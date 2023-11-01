@@ -1,3 +1,5 @@
+import { parseArguments } from "./bmiUtils";
+
 // Calculates the bmi based on the provided parameters (in cm and kg)
 const calculateBmi = (height: number, weight: number) => {
   const heightInM: number = height / 100;
@@ -15,4 +17,13 @@ const calculateBmi = (height: number, weight: number) => {
   console.log(weightStatus)
 }
 
-calculateBmi(180, 74)
+try {
+  const [height, weight] = parseArguments(process.argv);
+  calculateBmi(height, weight);
+} catch (error: unknown) {
+  let errorMessage = 'Something went wrong.';
+  if (error instanceof Error) {
+    errorMessage += ` Error: ${error.message}`
+  }
+  console.log(errorMessage);
+}
