@@ -1,7 +1,7 @@
 import { parseArguments } from "./bmiUtils";
 
 // Calculates the bmi based on the provided parameters (in cm and kg)
-const calculateBmi = (height: number, weight: number) => {
+export const calculateBmi = (height: number, weight: number) => {
   const heightInM: number = height / 100;
   const bmi: number = weight / (heightInM * heightInM);
   let weightStatus = "";
@@ -15,6 +15,7 @@ const calculateBmi = (height: number, weight: number) => {
     weightStatus = 'Underweight';
   }
   console.log(weightStatus)
+  return weightStatus
 }
 
 try {
@@ -27,3 +28,5 @@ try {
   }
   console.log(errorMessage);
 }
+
+export default 'bmi calculator'
