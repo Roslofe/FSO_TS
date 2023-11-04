@@ -1,3 +1,5 @@
+import { parseArguments } from "./exerciseUtils";
+
 interface ExerciseData {
   periodLength: number;
   trainingDays: number;
@@ -46,4 +48,13 @@ const calculateExercises = (values: Array<number>, target: number): ExerciseData
   return resultData;
 }
 
-calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2)
+try {
+  const [target, data] = parseArguments(process.argv);
+  calculateExercises(data, target);
+} catch (error: unknown) {
+  let errorMessage = 'Something went wrong.';
+  if (error instanceof Error) {
+    errorMessage += ` Error: ${error.message}`;
+  }
+  console.log(errorMessage);
+}
